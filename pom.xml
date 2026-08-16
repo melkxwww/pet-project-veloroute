@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>me.melkx</groupId>
-  <artifactId>open-trail-service</artifactId>
+  <artifactId>veloroute</artifactId>
   <version>0.0.1</version>
   <packaging>jar</packaging>
 
-  <name>open-trail-service</name>
+  <name>veloroute</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -40,4 +40,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>9</source>
+          <target>9</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
