@@ -4,3 +4,5 @@ server:
 spring:
   application:
     name: veloroute
+  jackson:
+    default-property-inclusion: non_null
