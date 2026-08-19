@@ -16,17 +16,17 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@EnableConfigurationProperties(GraphHopperConfigurationProperties.class)
-public class GraphHopperConfig {
+@EnableConfigurationProperties(GHConfigurationProperties.class)
+public class GHConfig {
     private static final String PROFILE_NAME = "custom_profile";
     private static final String NAVIGATION_MODE_KEY = "navigation_mode";
     private static final String NAVIGATION_MODE = "bike";
     private static final String SRTM_PROVIDER_CACHE_DIR_NAME = "srtm";
 
-    private final GraphHopperConfigurationProperties properties;
+    private final GHConfigurationProperties properties;
 
     @Autowired
-    public GraphHopperConfig(GraphHopperConfigurationProperties properties) {
+    public GHConfig(GHConfigurationProperties properties) {
         this.properties = properties;
     }
 

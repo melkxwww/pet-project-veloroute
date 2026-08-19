@@ -1,18 +1,14 @@
 package me.melkx.veloroute.controller.dto.request;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import me.melkx.veloroute.enums.ElevationPreference;
+import jakarta.validation.constraints.*;
+import me.melkx.veloroute.enums.SurfaceType;
 
-public record RouteWeightingSettings(
-        @NotNull @Min(0) @Max(100) Integer surfaceMinQuality,
-        @NotNull @Min(0) @Max(100) Integer maxTrafficStress,
-        @NotNull @Min(0) @Max(20) Integer maxIncline,
-        @NotNull @Min(0) @Max(100) Integer scenicWeight,
-        @NotNull @Min(0) @Max(100) Integer shadeWeight,
-        @NotNull @Min(0) @Max(100) Integer explorationWeight,
-        @NotNull ElevationPreference elevationPreference,
-        @NotNull Boolean isNight,
-        @NotNull @Min(30) @Max(150) Integer totalMassKg) {
+public record RouteWeightingSettings(@NotNull @DecimalMin("0") @DecimalMax("1") Double picturesqueness,
+                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double shadiness,
+                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double roadQuality,
+                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double trafficStress,
+                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double explorationImportant,
+                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double illumination,
+                                     @NotNull @Min(0) @Max(45) Integer averageSlope,
+                                     @NotNull SurfaceType surfaceType) {
 }
