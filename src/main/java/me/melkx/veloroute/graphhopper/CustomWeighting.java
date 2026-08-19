@@ -56,10 +56,10 @@ public class CustomWeighting implements Weighting {
                            double shadiness,
                            double roadQuality,
                            double trafficStress,
-                           double explorationImportant,
                            double illumination,
+                           SurfaceType surfaceType,
                            int averageSlope,
-                           SurfaceType surfaceType) {
+                           double explorationImportant) {
     }
 
     public record RequiredEncodedValues(DecimalEncodedValue picturesquenessEv,

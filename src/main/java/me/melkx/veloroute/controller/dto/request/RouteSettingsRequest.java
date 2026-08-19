@@ -9,7 +9,7 @@ import me.melkx.veloroute.enums.SurfaceType;
 
 public record RouteSettingsRequest(
         @NotNull RouteType routeType,
-        @NotNull Point startPoint,
+        @NotNull @Valid Point startPoint,
         @NotNull @Min(1) @Max(300) Integer distanceKm,
         @NotNull Boolean enableWindRouting,
         @NotNull Boolean enableWaterStops,

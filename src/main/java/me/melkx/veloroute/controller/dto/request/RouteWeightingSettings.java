@@ -7,8 +7,8 @@ public record RouteWeightingSettings(@NotNull @DecimalMin("0") @DecimalMax("1") 
                                      @NotNull @DecimalMin("0") @DecimalMax("1") Double shadiness,
                                      @NotNull @DecimalMin("0") @DecimalMax("1") Double roadQuality,
                                      @NotNull @DecimalMin("0") @DecimalMax("1") Double trafficStress,
-                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double explorationImportant,
                                      @NotNull @DecimalMin("0") @DecimalMax("1") Double illumination,
+                                     @NotNull SurfaceType surfaceType,
                                      @NotNull @Min(0) @Max(45) Integer averageSlope,
-                                     @NotNull SurfaceType surfaceType) {
+                                     @NotNull @DecimalMin("0") @DecimalMax("1") Double explorationImportant) {
 }

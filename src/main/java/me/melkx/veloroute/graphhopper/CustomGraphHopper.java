@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CustomGraphHopper extends GraphHopper {
-    public static final String WEIGHTING_CLIENT_CONFIG_HINT_KEY = "weighting_client_config";
+    public static final String CUSTOM_WEIGHTING_SETTINGS_HINT_KEY = "custom_weighting_settings";
 
     private static final String PICTURESQUENESS_KEY = "scenic_factor";
     private static final String SHADINESS_KEY = "shade_factor";
@@ -25,7 +25,7 @@ public class CustomGraphHopper extends GraphHopper {
     protected WeightingFactory createWeightingFactory() {
         return (profile, pMap, b) -> {
             if (Objects.equals(profile.getWeighting(), CustomWeighting.NAME)) {
-                CustomWeighting.Settings settings = pMap.getObject(WEIGHTING_CLIENT_CONFIG_HINT_KEY, null);
+                CustomWeighting.Settings settings = pMap.getObject(CUSTOM_WEIGHTING_SETTINGS_HINT_KEY, null);
 
                 CustomWeighting.RequiredEncodedValues encodedValues = new CustomWeighting.RequiredEncodedValues(
                         encodingManager.getDecimalEncodedValue(PICTURESQUENESS_KEY),
@@ -38,7 +38,7 @@ public class CustomGraphHopper extends GraphHopper {
                 );
 
                 return new CustomWeighting(
-                        Objects.requireNonNull(settings, WEIGHTING_CLIENT_CONFIG_HINT_KEY + " cannot be null or absent in hints"),
+                        Objects.requireNonNull(settings, CUSTOM_WEIGHTING_SETTINGS_HINT_KEY + " cannot be null or absent in hints"),
                         encodedValues
                 );
             }
