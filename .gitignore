@@ -13,6 +13,9 @@ target/
 *.iml
 *.ipr
 
+### CUSTOM ###
+**/src/main/resources/graphhopper/crimea_baked.osm.pbf
+
 ### Eclipse ###
 .apt_generated
 .classpath
