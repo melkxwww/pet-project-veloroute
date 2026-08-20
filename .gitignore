@@ -14,7 +14,7 @@ target/
 *.ipr
 
 ### CUSTOM ###
-./src/main/resources/graphhopper
+/src/main/resources/graphhopper/
 
 ### Eclipse ###
 .apt_generated
