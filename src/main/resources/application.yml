@@ -6,3 +6,12 @@ spring:
     name: veloroute
   jackson:
     default-property-inclusion: non_null
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+veloroute:
+  graphhopper:
+    osm-file-path: ./graphhopper/crimea_baked.osm.pbf
+    graph-cache-dir: ./graphhopper/graph-cache

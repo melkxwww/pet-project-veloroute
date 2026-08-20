@@ -12,20 +12,24 @@ import java.util.Map;
 import java.util.Objects;
 
 public class CustomGraphHopper extends GraphHopper {
-    public static final String CUSTOM_WEIGHTING_SETTINGS_HINT_KEY = "custom_weighting_settings";
+    public static final String CUSTOM_WEIGHTING_PREFERENCES_HINT_KEY = "custom_weighting_preferences";
+    public static final String CUSTOM_WEIGHTING_WEIGHT_HINT_KEY = "custom_weighting_weights";
+    public static final String CUSTOM_WEIGHTING_BLOCKED_EDGES_HINT_KEY = "custom_weighting_blocked_edges";
 
-    private static final String PICTURESQUENESS_KEY = "scenic_factor";
-    private static final String SHADINESS_KEY = "shade_factor";
-    private static final String ROAD_QUALITY_KEY = "surface_quality";
+    private static final String PICTURESQUENESS_KEY = "picturesqueness";
+    private static final String SHADINESS_KEY = "shadiness";
+    private static final String ROAD_QUALITY_KEY = "road_quality";
     private static final String TRAFFIC_STRESS_KEY = "traffic_stress";
-    private static final String ILLUMINATION_STRESS_KEY = "traffic_stress";
-    private static final String SURFACE_TYPE_KEY = "traffic_stress";
+    private static final String ILLUMINATION_STRESS_KEY = "illumination";
+    private static final String SURFACE_TYPE_KEY = "surface_type";
 
     @Override
     protected WeightingFactory createWeightingFactory() {
         return (profile, pMap, b) -> {
             if (Objects.equals(profile.getWeighting(), CustomWeighting.NAME)) {
-                CustomWeighting.Settings settings = pMap.getObject(CUSTOM_WEIGHTING_SETTINGS_HINT_KEY, null);
+                CustomWeighting.Preferences preferences = pMap.getObject(CUSTOM_WEIGHTING_PREFERENCES_HINT_KEY, null);
+                CustomWeighting.Weights weights = pMap.getObject(CUSTOM_WEIGHTING_WEIGHT_HINT_KEY, null);
+                List<Integer> blockedEdges = pMap.getObject(CUSTOM_WEIGHTING_BLOCKED_EDGES_HINT_KEY, null);
 
                 CustomWeighting.RequiredEncodedValues encodedValues = new CustomWeighting.RequiredEncodedValues(
                         encodingManager.getDecimalEncodedValue(PICTURESQUENESS_KEY),
@@ -34,11 +38,14 @@ public class CustomGraphHopper extends GraphHopper {
                         encodingManager.getDecimalEncodedValue(TRAFFIC_STRESS_KEY),
                         encodingManager.getDecimalEncodedValue(ILLUMINATION_STRESS_KEY),
                         encodingManager.getEnumEncodedValue(SURFACE_TYPE_KEY, SurfaceType.class),
-                        encodingManager.getDecimalEncodedValue(AverageSlope.KEY)
+                        encodingManager.getDecimalEncodedValue(AverageSlope.KEY),
+                        encodingManager.getEnumEncodedValue(RoadClass.KEY, RoadClass.class)
                 );
 
                 return new CustomWeighting(
-                        Objects.requireNonNull(settings, CUSTOM_WEIGHTING_SETTINGS_HINT_KEY + " cannot be null or absent in hints"),
+                        Objects.requireNonNull(preferences, CUSTOM_WEIGHTING_PREFERENCES_HINT_KEY + " cannot be null or absent in hints"),
+                        Objects.requireNonNull(weights, CUSTOM_WEIGHTING_WEIGHT_HINT_KEY + " cannot be null or absent in hints"),
+                        blockedEdges,
                         encodedValues
                 );
             }
