@@ -5,7 +5,6 @@ import com.graphhopper.routing.ev.EnumEncodedValue;
 import com.graphhopper.routing.ev.RoadClass;
 import com.graphhopper.routing.weighting.Weighting;
 import com.graphhopper.util.EdgeIteratorState;
-import me.melkx.veloroute.dto.request.LoopRouteGenerationRequest;
 import me.melkx.veloroute.enums.SurfaceType;
 import org.jspecify.annotations.Nullable;
 
@@ -41,10 +40,10 @@ public class CustomWeighting implements Weighting {
         if (distanceMeters < 0)
             return 0;
 
-        if (blockedEdges != null && blockedEdges.contains(edge.getEdge()))
+        if (isEdgeBlocked(edge.getEdge()))
             return Double.POSITIVE_INFINITY;
 
-        if (hasUnavailableRoad(edge.get(encodedValues.roadClassEv())))
+        if (isUnavailableRoad(edge.get(encodedValues.roadClassEv())))
             return Double.POSITIVE_INFINITY;
 
         double multiplier = MIN_MULTIPLIER +
@@ -59,7 +58,11 @@ public class CustomWeighting implements Weighting {
         return distanceMeters * multiplier;
     }
 
-    private boolean hasUnavailableRoad(RoadClass roadClass) {
+    private boolean isEdgeBlocked(int edgeId) {
+        return blockedEdges != null && blockedEdges.contains(edgeId);
+    }
+
+    private boolean isUnavailableRoad(RoadClass roadClass) {
         return roadClass == RoadClass.MOTORWAY || roadClass == RoadClass.STEPS;
     }
 
