@@ -2,6 +2,7 @@ package me.melkx.veloroute.graphhopper;
 
 import com.graphhopper.routing.ev.DecimalEncodedValue;
 import com.graphhopper.routing.ev.EnumEncodedValue;
+import com.graphhopper.routing.ev.IntEncodedValue;
 import com.graphhopper.routing.ev.RoadClass;
 import com.graphhopper.routing.weighting.Weighting;
 import com.graphhopper.util.EdgeIteratorState;
@@ -20,12 +21,12 @@ public class CustomWeighting implements Weighting {
     private final Weights weights;
     private final RequiredEncodedValues encodedValues;
     @Nullable
-    private final List<Integer> blockedEdges;
+    private final List<Integer> blockedOsmWayIds;
 
-    public CustomWeighting(Preferences preferences, Weights weights, @Nullable List<Integer> blockedEdges, RequiredEncodedValues encodedValues) {
+    public CustomWeighting(Preferences preferences, Weights weights, @Nullable List<Integer> blockedOsmWayIds, RequiredEncodedValues encodedValues) {
         this.preferences = preferences;
         this.weights = weights;
-        this.blockedEdges = blockedEdges;
+        this.blockedOsmWayIds = blockedOsmWayIds;
         this.encodedValues = encodedValues;
     }
 
@@ -40,7 +41,7 @@ public class CustomWeighting implements Weighting {
         if (distanceMeters < 0)
             return 0;
 
-        if (isEdgeBlocked(edge.getEdge()))
+        if (isOsmWayIdBlocked(edge.get(encodedValues.osmWayIdEv())))
             return Double.POSITIVE_INFINITY;
 
         if (isUnavailableRoad(edge.get(encodedValues.roadClassEv())))
@@ -58,8 +59,8 @@ public class CustomWeighting implements Weighting {
         return distanceMeters * multiplier;
     }
 
-    private boolean isEdgeBlocked(int edgeId) {
-        return blockedEdges != null && blockedEdges.contains(edgeId);
+    private boolean isOsmWayIdBlocked(int osmWayId) {
+        return blockedOsmWayIds != null && blockedOsmWayIds.contains(osmWayId);
     }
 
     private boolean isUnavailableRoad(RoadClass roadClass) {
@@ -149,6 +150,7 @@ public class CustomWeighting implements Weighting {
                                         DecimalEncodedValue illuminationEv,
                                         EnumEncodedValue<SurfaceType> surfaceTypeEv,
                                         DecimalEncodedValue averageSlopeEv,
-                                        EnumEncodedValue<RoadClass> roadClassEv) {
+                                        EnumEncodedValue<RoadClass> roadClassEv,
+                                        IntEncodedValue osmWayIdEv) {
     }
 }

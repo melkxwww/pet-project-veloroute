@@ -5,7 +5,7 @@ import me.melkx.veloroute.dto.request.LoopRouteGenerationRequest;
 import me.melkx.veloroute.dto.request.P2PRouteGenerationRequest;
 import me.melkx.veloroute.dto.request.RouteGenerationRequest;
 import me.melkx.veloroute.dto.response.RouteGenerationResponse;
-import me.melkx.veloroute.graphhopper.RouteGeneratorService;
+import me.melkx.veloroute.service.RouteGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

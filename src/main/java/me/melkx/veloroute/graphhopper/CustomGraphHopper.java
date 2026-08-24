@@ -39,7 +39,8 @@ public class CustomGraphHopper extends GraphHopper {
                         encodingManager.getDecimalEncodedValue(ILLUMINATION_STRESS_KEY),
                         encodingManager.getEnumEncodedValue(SURFACE_TYPE_KEY, SurfaceType.class),
                         encodingManager.getDecimalEncodedValue(AverageSlope.KEY),
-                        encodingManager.getEnumEncodedValue(RoadClass.KEY, RoadClass.class)
+                        encodingManager.getEnumEncodedValue(RoadClass.KEY, RoadClass.class),
+                        encodingManager.getIntEncodedValue(OSMWayID.KEY)
                 );
 
                 return new CustomWeighting(
@@ -70,6 +71,7 @@ public class CustomGraphHopper extends GraphHopper {
         builder.add(new DecimalEncodedValueImpl(TRAFFIC_STRESS_KEY, bits, factor, false));
         builder.add(new DecimalEncodedValueImpl(ILLUMINATION_STRESS_KEY, bits, factor, false));
         builder.add(new EnumEncodedValue<>(SURFACE_TYPE_KEY, SurfaceType.class));
+        builder.add(OSMWayID.create());
 
         EncodingManager defaultEm = super.buildEncodingManager(encodedValuesWithProps, activeImportUnits, restrictionVehicleTypesByProfile);
 

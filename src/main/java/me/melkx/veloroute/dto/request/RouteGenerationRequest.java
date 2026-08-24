@@ -3,13 +3,15 @@ package me.melkx.veloroute.dto.request;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import me.melkx.veloroute.dto.Point;
 
-@Data
+import java.util.List;
+
+@Getter
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
@@ -21,26 +23,47 @@ import me.melkx.veloroute.dto.Point;
         @JsonSubTypes.Type(value = LoopRouteGenerationRequest.class, name = "LOOP")
 })
 public abstract class RouteGenerationRequest {
+
     @NotNull
-    private String routeType;
+    private final String routeType;
 
     @NotNull
     @Valid
-    private Point startPoint;
+    private final Point startPoint;
 
     @NotNull
     @Min(1)
     @Max(300)
-    private Double distanceKm;
+    private final Double distanceKm;
 
     @NotNull
-    private Integer explorationZoneId;
+    @NotEmpty
+    @Size(min = 1, max = 100)
+    private final List<@Min(1) @Max(Integer.MAX_VALUE) Integer> explorationZoneIds;
 
     @NotNull
     @Valid
-    private RouteGenerationPreferences preferences;
+    private final RouteGenerationPreferences preferences;
 
     @NotNull
     @Valid
-    private RouteGenerationWeights weights;
+    private final RouteGenerationWeights weights;
+
+    protected RouteGenerationRequest(
+            String routeType,
+            Point startPoint,
+            Double distanceKm,
+            List<Integer> explorationZoneIds,
+            RouteGenerationPreferences preferences,
+            RouteGenerationWeights weights
+    ) {
+        this.routeType = routeType;
+        this.startPoint = startPoint;
+        this.distanceKm = distanceKm;
+        this.explorationZoneIds = explorationZoneIds != null
+                ? List.copyOf(explorationZoneIds)
+                : List.of();
+        this.preferences = preferences;
+        this.weights = weights;
+    }
 }
