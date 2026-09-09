@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
-import me.melkx.veloroute.dto.Point;
+import me.melkx.veloroute.dto.PointDto;
 
 import java.util.List;
 
@@ -19,17 +17,16 @@ import java.util.List;
         visible = true
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = P2PRouteGenerationRequest.class, name = "P2P"),
-        @JsonSubTypes.Type(value = LoopRouteGenerationRequest.class, name = "LOOP")
+        @JsonSubTypes.Type(value = P2PRouteGenerationRequestDto.class, name = "P2P"),
+        @JsonSubTypes.Type(value = LoopRouteGenerationRequestDto.class, name = "LOOP")
 })
-public abstract class RouteGenerationRequest {
-
+public abstract class RouteGenerationRequestDto {
     @NotNull
     private final String routeType;
 
     @NotNull
     @Valid
-    private final Point startPoint;
+    private final PointDto startPoint;
 
     @NotNull
     @Min(1)
@@ -39,7 +36,7 @@ public abstract class RouteGenerationRequest {
     @NotNull
     @NotEmpty
     @Size(min = 1, max = 100)
-    private final List<@Min(1) @Max(Integer.MAX_VALUE) Integer> explorationZoneIds;
+    private final List<@Min(1) @Max(Long.MAX_VALUE) Long> osmBoundaryIds;
 
     @NotNull
     @Valid
@@ -49,19 +46,19 @@ public abstract class RouteGenerationRequest {
     @Valid
     private final RouteGenerationWeights weights;
 
-    protected RouteGenerationRequest(
+    protected RouteGenerationRequestDto(
             String routeType,
-            Point startPoint,
+            PointDto startPoint,
             Double distanceKm,
-            List<Integer> explorationZoneIds,
+            List<Integer> osmBoundaryIds,
             RouteGenerationPreferences preferences,
             RouteGenerationWeights weights
     ) {
         this.routeType = routeType;
         this.startPoint = startPoint;
         this.distanceKm = distanceKm;
-        this.explorationZoneIds = explorationZoneIds != null
-                ? List.copyOf(explorationZoneIds)
+        this.osmBoundaryIds = osmBoundaryIds != null
+                ? List.copyOf(osmBoundaryIds)
                 : List.of();
         this.preferences = preferences;
         this.weights = weights;

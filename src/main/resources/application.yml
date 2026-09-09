@@ -2,10 +2,21 @@ server:
   port: 8080
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/veloroute_db
+    username: postgres
+    password: root
+
   application:
     name: veloroute
+
   jackson:
     default-property-inclusion: non_null
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
   data:
     redis:
       host: localhost

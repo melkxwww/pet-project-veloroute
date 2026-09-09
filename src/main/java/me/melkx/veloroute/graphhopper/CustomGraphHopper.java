@@ -6,15 +6,17 @@ import com.graphhopper.routing.ev.*;
 import com.graphhopper.routing.util.EncodingManager;
 import com.graphhopper.util.PMap;
 import me.melkx.veloroute.enums.SurfaceType;
+import me.melkx.veloroute.model.GeneratorPreferences;
+import me.melkx.veloroute.model.GeneratorWeights;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class CustomGraphHopper extends GraphHopper {
-    public static final String CUSTOM_WEIGHTING_PREFERENCES_HINT_KEY = "custom_weighting_preferences";
-    public static final String CUSTOM_WEIGHTING_WEIGHT_HINT_KEY = "custom_weighting_weights";
-    public static final String CUSTOM_WEIGHTING_BLOCKED_EDGES_HINT_KEY = "custom_weighting_blocked_edges";
+    public static final String GENERATOR_PREFERENCES_HINT_KEY = "generator_preferences";
+    public static final String GENERATOR_WEIGHTS_HINT_KEY = "generator_weights";
+    public static final String GENERATOR_BLOCKED_EDGES_HINT_KEY = "generator_blocked_edges";
 
     private static final String PICTURESQUENESS_KEY = "picturesqueness";
     private static final String SHADINESS_KEY = "shadiness";
@@ -27,9 +29,9 @@ public class CustomGraphHopper extends GraphHopper {
     protected WeightingFactory createWeightingFactory() {
         return (profile, pMap, b) -> {
             if (Objects.equals(profile.getWeighting(), CustomWeighting.NAME)) {
-                CustomWeighting.Preferences preferences = pMap.getObject(CUSTOM_WEIGHTING_PREFERENCES_HINT_KEY, null);
-                CustomWeighting.Weights weights = pMap.getObject(CUSTOM_WEIGHTING_WEIGHT_HINT_KEY, null);
-                List<Integer> blockedEdges = pMap.getObject(CUSTOM_WEIGHTING_BLOCKED_EDGES_HINT_KEY, null);
+                GeneratorPreferences preferences = pMap.getObject(GENERATOR_PREFERENCES_HINT_KEY, null);
+                GeneratorWeights weights = pMap.getObject(GENERATOR_WEIGHTS_HINT_KEY, null);
+                List<Integer> blockedEdges = pMap.getObject(GENERATOR_BLOCKED_EDGES_HINT_KEY, null);
 
                 CustomWeighting.RequiredEncodedValues encodedValues = new CustomWeighting.RequiredEncodedValues(
                         encodingManager.getDecimalEncodedValue(PICTURESQUENESS_KEY),
@@ -44,8 +46,8 @@ public class CustomGraphHopper extends GraphHopper {
                 );
 
                 return new CustomWeighting(
-                        Objects.requireNonNull(preferences, CUSTOM_WEIGHTING_PREFERENCES_HINT_KEY + " cannot be null or absent in hints"),
-                        Objects.requireNonNull(weights, CUSTOM_WEIGHTING_WEIGHT_HINT_KEY + " cannot be null or absent in hints"),
+                        Objects.requireNonNull(preferences, GENERATOR_PREFERENCES_HINT_KEY + " cannot be null or absent in hints"),
+                        Objects.requireNonNull(weights, GENERATOR_WEIGHTS_HINT_KEY + " cannot be null or absent in hints"),
                         blockedEdges,
                         encodedValues
                 );

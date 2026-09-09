@@ -7,6 +7,8 @@ import com.graphhopper.routing.ev.RoadClass;
 import com.graphhopper.routing.weighting.Weighting;
 import com.graphhopper.util.EdgeIteratorState;
 import me.melkx.veloroute.enums.SurfaceType;
+import me.melkx.veloroute.model.GeneratorPreferences;
+import me.melkx.veloroute.model.GeneratorWeights;
 import org.jspecify.annotations.Nullable;
 
 import java.util.List;
@@ -17,13 +19,14 @@ public class CustomWeighting implements Weighting {
     private static final double MIN_MULTIPLIER = 1;
     private static final double MAX_AVERAGE_SLOPE = 45;
 
-    private final Preferences preferences;
-    private final Weights weights;
+    private final GeneratorPreferences preferences;
+    private final GeneratorWeights weights;
     private final RequiredEncodedValues encodedValues;
+
     @Nullable
     private final List<Integer> blockedOsmWayIds;
 
-    public CustomWeighting(Preferences preferences, Weights weights, @Nullable List<Integer> blockedOsmWayIds, RequiredEncodedValues encodedValues) {
+    public CustomWeighting(GeneratorPreferences preferences, GeneratorWeights weights, @Nullable List<Integer> blockedOsmWayIds, RequiredEncodedValues encodedValues) {
         this.preferences = preferences;
         this.weights = weights;
         this.blockedOsmWayIds = blockedOsmWayIds;
@@ -123,24 +126,6 @@ public class CustomWeighting implements Weighting {
     @Override
     public String getName() {
         return NAME;
-    }
-
-    public record Preferences(double picturesqueness,
-                              double shadiness,
-                              double roadQuality,
-                              double trafficStress,
-                              double illumination,
-                              SurfaceType[] surfaceTypes,
-                              double averageSlope) {
-    }
-
-    public record Weights(double picturesquenessWeight,
-                          double shadinessWeight,
-                          double roadQualityWeight,
-                          double trafficStressWeight,
-                          double illuminationWeight,
-                          double surfaceTypeWeight,
-                          double averageSlopeWeight) {
     }
 
     public record RequiredEncodedValues(DecimalEncodedValue picturesquenessEv,

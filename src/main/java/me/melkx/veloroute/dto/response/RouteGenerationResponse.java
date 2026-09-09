@@ -1,8 +1,8 @@
 package me.melkx.veloroute.dto.response;
 
-import me.melkx.veloroute.dto.Point;
+import me.melkx.veloroute.dto.PointDto;
 
 import java.util.List;
 
-public record RouteGenerationResponse(double distanceKm, double timeSeconds, List<Point> routePoints, List<Instruction> instructions) {
+public record RouteGenerationResponse(double distanceKm, double timeSeconds, List<PointDto> routePoints, List<Instruction> instructions) {
 }
