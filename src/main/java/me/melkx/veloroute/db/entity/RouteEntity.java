@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import me.melkx.veloroute.model.GeneratorPreset;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -34,10 +35,9 @@ public class RouteEntity {
     @JoinColumn(name = "zone_id", nullable = false)
     private ExplorationZoneEntity explorationZone;
 
-    //TODO: create SNAPSHOT type
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "preset_snapshot", nullable = false)
-    private Object presetSnapshot;
+    private GeneratorPreset presetSnapshot;
 
     @JdbcTypeCode(SqlTypes.GEOMETRY)
     @Column(name = "path", nullable = false)

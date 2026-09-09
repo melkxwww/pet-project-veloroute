@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints =
+        @UniqueConstraint(name = "uk_users_email", columnNames = "email"))
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,7 @@ public class UserEntity {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    @Column(name = "is_activated")
+    @Column(name = "is_activated", nullable = false)
     private Boolean activated = false;
 
     @CreationTimestamp

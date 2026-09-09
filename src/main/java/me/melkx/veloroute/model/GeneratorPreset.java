@@ -1,13 +1,14 @@
 package me.melkx.veloroute.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import me.melkx.veloroute.enums.RouteType;
-import org.locationtech.jts.geom.Point;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record GeneratorPreset(RouteType routeType,
+public record GeneratorPreset(@NotNull RouteType routeType,
                               Point targetPoint,
-                              Integer desiredDistanceKm,
-                              GeneratorPreferences preferences,
-                              GeneratorWeights weights) {
+                              @NotNull Integer desiredDistanceKm,
+                              @NotNull @Valid GeneratorPreferences preferences,
+                              @NotNull @Valid GeneratorWeights weights) {
 }
