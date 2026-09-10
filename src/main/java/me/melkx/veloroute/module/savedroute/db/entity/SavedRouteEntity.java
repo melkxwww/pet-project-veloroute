@@ -1,11 +1,11 @@
-package me.melkx.veloroute.savedroute.db.entity;
+package me.melkx.veloroute.module.savedroute.db.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import me.melkx.veloroute.route.db.entity.RouteEntity;
+import me.melkx.veloroute.module.route.db.entity.RouteEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 

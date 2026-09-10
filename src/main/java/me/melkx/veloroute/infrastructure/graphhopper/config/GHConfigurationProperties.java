@@ -1,4 +1,4 @@
-package me.melkx.veloroute.graphhopper.config;
+package me.melkx.veloroute.infrastructure.graphhopper.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

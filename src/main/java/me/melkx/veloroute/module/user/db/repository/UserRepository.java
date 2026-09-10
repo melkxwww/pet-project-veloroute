@@ -1,6 +1,6 @@
-package me.melkx.veloroute.user.db.repository;
+package me.melkx.veloroute.module.user.db.repository;
 
-import me.melkx.veloroute.user.db.entity.UserEntity;
+import me.melkx.veloroute.module.user.db.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

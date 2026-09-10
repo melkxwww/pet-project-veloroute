@@ -1,4 +1,4 @@
-package me.melkx.veloroute.trip.db.entity;
+package me.melkx.veloroute.module.trip.db.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.melkx.veloroute.core.enums.TripStatus;
-import me.melkx.veloroute.route.db.entity.RouteEntity;
+import me.melkx.veloroute.module.route.db.entity.RouteEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 

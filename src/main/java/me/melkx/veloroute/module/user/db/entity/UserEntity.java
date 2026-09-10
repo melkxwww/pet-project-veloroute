@@ -1,4 +1,4 @@
-package me.melkx.veloroute.user.db.entity;
+package me.melkx.veloroute.module.user.db.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

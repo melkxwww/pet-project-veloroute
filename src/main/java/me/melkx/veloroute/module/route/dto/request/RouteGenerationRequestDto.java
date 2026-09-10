@@ -1,4 +1,4 @@
-package me.melkx.veloroute.route.dto.request;
+package me.melkx.veloroute.module.route.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.Valid;

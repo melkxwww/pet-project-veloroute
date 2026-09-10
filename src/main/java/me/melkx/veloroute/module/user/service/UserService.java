@@ -1,5 +1,7 @@
 package me.melkx.veloroute.module.user.service;
 
+import me.melkx.veloroute.module.user.db.entity.UserEntity;
+import me.melkx.veloroute.module.user.db.repository.UserRepository;
 import me.melkx.veloroute.module.user.dto.request.UserPasswordChangingRequestDto;
 import me.melkx.veloroute.module.user.dto.request.UserRegistrationRequestDto;
 import me.melkx.veloroute.module.user.dto.response.UserPersonalInfoResponseDto;
@@ -8,8 +10,6 @@ import me.melkx.veloroute.module.user.exception.EmailAlreadyExistsException;
 import me.melkx.veloroute.module.user.exception.IdenticalPasswordsException;
 import me.melkx.veloroute.module.user.exception.InvalidPasswordException;
 import me.melkx.veloroute.module.user.exception.UserNotFoundException;
-import me.melkx.veloroute.user.db.entity.UserEntity;
-import me.melkx.veloroute.user.db.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

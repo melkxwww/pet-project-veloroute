@@ -1,4 +1,4 @@
-package me.melkx.veloroute.security.config;
+package me.melkx.veloroute.infrastructure.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

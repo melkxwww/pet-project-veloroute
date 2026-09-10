@@ -1,4 +1,4 @@
-package me.melkx.veloroute.route.dto.response;
+package me.melkx.veloroute.module.route.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import me.melkx.veloroute.core.model.GeneratorPreset;

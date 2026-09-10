@@ -1,11 +1,11 @@
-package me.melkx.veloroute.graphhopper.config;
+package me.melkx.veloroute.infrastructure.graphhopper.config;
 
 import com.graphhopper.GraphHopper;
 import com.graphhopper.config.LMProfile;
 import com.graphhopper.config.Profile;
 import com.graphhopper.reader.dem.SRTMProvider;
-import me.melkx.veloroute.graphhopper.CustomGraphHopper;
-import me.melkx.veloroute.graphhopper.CustomWeighting;
+import me.melkx.veloroute.infrastructure.graphhopper.CustomGraphHopper;
+import me.melkx.veloroute.infrastructure.graphhopper.CustomWeighting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

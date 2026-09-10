@@ -1,4 +1,4 @@
-package me.melkx.veloroute.security.service;
+package me.melkx.veloroute.infrastructure.security.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

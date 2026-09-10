@@ -1,11 +1,11 @@
-package me.melkx.veloroute.explorationzone.db.entity;
+package me.melkx.veloroute.module.explorationzone.db.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import me.melkx.veloroute.user.db.entity.UserEntity;
+import me.melkx.veloroute.module.user.db.entity.UserEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;

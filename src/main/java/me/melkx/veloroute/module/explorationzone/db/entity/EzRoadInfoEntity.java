@@ -1,4 +1,4 @@
-package me.melkx.veloroute.explorationzone.db.entity;
+package me.melkx.veloroute.module.explorationzone.db.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

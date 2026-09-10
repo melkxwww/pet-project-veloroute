@@ -1,4 +1,4 @@
-package me.melkx.veloroute.graphhopper;
+package me.melkx.veloroute.infrastructure.graphhopper;
 
 import com.graphhopper.routing.ev.DecimalEncodedValue;
 import com.graphhopper.routing.ev.EnumEncodedValue;
